@@ -1,0 +1,58 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    vector<int> play;
+    vector<int> wait;
+
+    vector<int>::iterator i;
+
+    int n;
+    int winner;
+
+    wait.push_back(3);
+    play.push_back(1);
+    play.push_back(2);
+
+    cin >> n;
+
+    while (n--)
+    {
+        cin >> winner;
+
+        i = find(play.begin(), play.end(), winner);
+        if (i != play.end())
+        {
+            int temp;
+            if (i - play.begin() == 0)
+            {
+                temp = play.back();
+                play.pop_back();
+                play.push_back(wait[0]);
+                wait.pop_back();
+                wait.push_back(temp);
+            }
+            else
+            {
+                temp = play[0];
+                play[0] = wait[0];
+                wait.pop_back();
+                wait.push_back(temp);
+            }
+            continue;
+        }
+        else
+        {
+            cout << "NO\n";
+            return 0;
+        }
+    }
+    cout << "YES\n";
+    return 0;
+}
