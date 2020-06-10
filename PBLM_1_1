@@ -1,0 +1,42 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int noOfBills(int dinars)
+{
+    
+    int ans = 0;
+    short denominations[] = {100, 20, 10, 5, 1};
+    for (int i = 0; i < 5 && dinars > 0; i++)
+    {
+        int bal = dinars / denominations[i];
+
+        dinars = dinars % denominations[i];
+        ans += bal;
+    }
+    return ans;
+}
+
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    int t;              //no. of test cases
+    long n[50];         //to store inputs
+    cin >> t;
+    
+    if(1 <= t || t <= 49)          //take input
+    {
+        for (int i = 0; i < t; i++)
+        cin >> n[i];
+    }
+    
+         for (int i = 0; i < t; i++)        //Display no of bills
+        cout << noOfBills(n[i]) << endl;
+   
+    return 0;
+}
